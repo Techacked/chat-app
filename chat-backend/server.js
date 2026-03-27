@@ -17,6 +17,16 @@ import { errorHandler, notFoundHandler } from "./middleware/errorHandler.js";
 
 dotenv.config();
 
+// ============ Environment Variable Validation ============
+const requiredEnvVars = ['MONGO_URI', 'JWT_SECRET'];
+const missingVars = requiredEnvVars.filter(varName => !process.env[varName]);
+
+if (missingVars.length > 0) {
+  console.error('❌ Missing required environment variables:', missingVars.join(', '));
+  console.error('Please set these in your deployment platform or .env file');
+  process.exit(1);
+}
+
 const app = express();
 
 // ============ Security & Logging ============
