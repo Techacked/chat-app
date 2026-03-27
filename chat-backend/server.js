@@ -50,6 +50,34 @@ app.get("/health", (req, res) => {
   });
 });
 
+// ============ Root Route ============
+app.get("/", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "Chat App Backend API",
+    version: "1.0.0",
+    endpoints: {
+      health: "GET /health",
+      auth: {
+        register: "POST /api/auth/register",
+        login: "POST /api/auth/login"
+      },
+      conversations: {
+        create: "POST /api/conversation/create",
+        getAll: "GET /api/conversation/all"
+      },
+      messages: {
+        send: "POST /api/message/send",
+        get: "GET /api/message/:conversationId"
+      },
+      users: {
+        getAll: "GET /api/users"
+      }
+    },
+    docs: "See API_REFERENCE.md for detailed documentation"
+  });
+});
+
 // ============ API Routes ============
 app.use("/api/auth", authRoutes);
 app.use("/api/conversation", conversationRoutes);

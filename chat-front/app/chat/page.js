@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Sidebar from '../../components/Sidebar'
-import ChatWindow from '../../components/ChatWindow'
+import NewChatWindow from '../../components/NewChatWindow'
 import socketService from '../../utils/socket'
 
 export default function ChatPage() {
@@ -83,7 +83,7 @@ export default function ChatPage() {
       />
       <div className="flex-1 flex flex-col">
         {activeChat ? (
-          <ChatWindow 
+          <NewChatWindow 
             user={user}
             activeChat={activeChat}
             messages={messages}
