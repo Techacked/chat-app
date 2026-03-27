@@ -38,6 +38,11 @@ export const chatSocket = (io) => {
           status: "online",
           lastSeen: new Date()
         });
+        // Emit status update to all connected clients
+        io.emit("user_status_update", {
+          userId: socket.userId,
+          status: "online"
+        });
       }
 
       // Broadcast online users count
@@ -143,6 +148,11 @@ export const chatSocket = (io) => {
             });
             userSessions.delete(socket.userId);
             console.log(`🔴 User ${socket.userId} is now fully offline`);
+            // Emit status update to all connected clients
+            io.emit("user_status_update", {
+              userId: socket.userId,
+              status: "offline"
+            });
           } else {
             console.log(`⚪ User ${socket.userId} still has ${userSession.size} active connection(s)`);
           }
