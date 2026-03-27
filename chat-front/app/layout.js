@@ -1,15 +1,15 @@
-import './globals.css'
+'use client'
 
-export const metadata = {
-  title: 'Dark Chat App',
-  description: 'Real-time dark theme chat application',
-}
+import './globals.css'
+import ClientWrapper from '../components/ClientWrapper'
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="bg-dark-bg text-dark-text">
-        {children}
+        <ClientWrapper>
+          {children}
+        </ClientWrapper>
       </body>
     </html>
   )
